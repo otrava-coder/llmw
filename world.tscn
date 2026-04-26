@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b7je72hqqe08m" path="res://player.gd" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://k68pnnt144pu" path="res://kimi.gd" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://bvudnls3x85xb" path="res://hippo.gd" id="3_tlwt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fj7yv"]
+radius = 100.0
 
 [node name="World" type="Node2D" unique_id=1333138027]
 
@@ -26,8 +30,56 @@ shape = SubResource("RectangleShape2D_fj7yv")
 script = ExtResource("2_fj7yv")
 
 [node name="LineEdit" type="LineEdit" parent="." unique_id=620355287]
-offset_left = 200.0
-offset_top = 500.0
-offset_right = 952.0
-offset_bottom = 540.0
+visible = false
+offset_left = 20.0
+offset_top = 608.0
+offset_right = 1132.0
+offset_bottom = 640.0
 placeholder_text = "write a text + enter"
+
+[node name="DialogBox" type="Panel" parent="." unique_id=89032623]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 440.0
+offset_right = 1132.0
+offset_bottom = 590.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBox" unique_id=2127303773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[node name="hippo" type="Node2D" parent="." unique_id=1217961193]
+position = Vector2(800, 300)
+script = ExtResource("3_tlwt5")
+
+[node name="ColorRect" type="ColorRect" parent="hippo" unique_id=120415389]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.4627451, 0.26666668, 0.38431373, 1)
+
+[node name="Zone" type="Area2D" parent="hippo" unique_id=724710003]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hippo/Zone" unique_id=1619848936]
+shape = SubResource("CircleShape2D_fj7yv")
+
+[node name="Prompt" type="Label" parent="hippo" unique_id=42187621]
+visible = false
+offset_left = -50.0
+offset_top = -60.0
+offset_right = 50.0
+offset_bottom = -37.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "E to talk"
+horizontal_alignment = 1
